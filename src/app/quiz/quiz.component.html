@@ -1,0 +1,32 @@
+<div class="container" *ngFor="let qu of qlist" [class.inactive]="qu !== activeItem">
+    
+    
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{qu.qid}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{qu.qstr}}</h6>
+            <p class="card-text">{{qu.qid}}-{{qu.qstr}}-{{qu.ans}} </p>
+            <a href="#!" class="card-link">Card link</a>
+            <a href="#!" class="card-link">Another link</a>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <div *ngIf="qu === qlist[qlist.length-1]; else elseBlock">
+                <button type="button" class="btn btn-info" (click)="previous()">Previous</button>
+                <button type="button" class="btn btn-success" >Submit</button>
+            </div>
+            <ng-template #elseBlock>
+                <div *ngIf="qu === qlist[0]; else elseBlock1">
+                    <button type="button" class="btn btn-info" (click)="next()">Next</button>
+                </div>
+                <ng-template #elseBlock1>
+                    <button type="button" class="btn btn-info" (click)="previous()">Previous</button>
+                    <button type="button" class="btn btn-secondary " (click)="next()">Next</button>
+                </ng-template>
+            </ng-template>
+        </div>
+    </div>
+</div>
